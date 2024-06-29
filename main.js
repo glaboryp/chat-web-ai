@@ -1,4 +1,4 @@
-import { CreateWebWorkerMLCEngine } from "https://esm.run/@mlc-ai/web-llm"
+import { CreateWebWorkerMLCEngine } from "@mlc-ai/web-llm"
 
 const body = document.querySelector('#container')
 const form = document.querySelector('form')
@@ -12,7 +12,8 @@ const loader = document.querySelector('.loading-container')
 
 let messagesList = []
 
-const SELECTED_MODEL = 'Llama-3-8B-Instruct-q4f16_1-MLC-1k'
+// const SELECTED_MODEL = 'Llama-3-8B-Instruct-q4f16_1-MLC-1k'
+const SELECTED_MODEL = 'TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC'
 
 const engine = await CreateWebWorkerMLCEngine(
   new Worker('/worker.js', { type: 'module' }),
