@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat con IA en local</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/main.js" ></script>
+</head>
+<body>
+  <div id="container" class="backOpacity">
+    <main>
+      <ul></ul>
+    </main>
+
+    <form>
+      <input placeholder="Escribe un mensaje">
+      <button disabled>Enviar</button>
+    </form>
+
+    <template id="message-template">
+      <li class="message">
+        <span></span>
+        <p></p>
+      </li>
+    </template>
+  </div>
+
+  <small>&nbsp;</small>
+
+  <div class="loading-container">
+    <span class="loader"></span>
+    <h3 class="loadig-message">Espere por favor...</h3>
+    <h3>Se está cargando el modelo de lenguaje natural en local, esto puede tardar unos minutos.</h3>
+  </div>
+</body>
+</html>
