@@ -11,12 +11,22 @@
 <body>
   <div id="container" class="backOpacity">
     <main>
-      <ul></ul>
+      <ul>
+        <li class="message bot">
+          <span>IA</span>
+          <p>¡Hola! ¿En qué puedo ayudarte hoy?</p>
+        </li>
+      </ul>
     </main>
 
     <form>
-      <input placeholder="Escribe un mensaje">
-      <button disabled>Enviar</button>
+      <textarea id="prompt" name="prompt" rows="2" placeholder="Escribe algo y presiona el botón de enviar, presiona Enter para nueva línea"></textarea>
+      <button disabled>
+        <div class="button-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" fill="none"><defs><path id="send-white_svg__a" d="M0 0h16v16H0z"></path></defs><g><mask id="send-white_svg__b" fill="#fff"><use xlink:href="#send-white_svg__a"></use></mask><g mask="url(#send-white_svg__b)"><path d="M0 4.71 6.67 6l1.67 6.67L12.67 0 0 4.71Z" transform="translate(1.333 2)" style="stroke: rgb(255, 255, 255); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0;"></path><path d="M0 1.89 1.89 0" transform="translate(8.003 6.117)" style="stroke: rgb(255, 255, 255); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0;"></path></g></g></svg>
+        </div>
+        <div class="button-text">Enviar</div>
+      </button>
     </form>
 
     <template id="message-template">

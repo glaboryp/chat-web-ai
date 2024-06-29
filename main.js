@@ -2,7 +2,7 @@ import { CreateWebWorkerMLCEngine } from "@mlc-ai/web-llm"
 
 const body = document.querySelector('#container')
 const form = document.querySelector('form')
-const input = document.querySelector('input')
+const input = document.querySelector('textarea')
 const template = document.querySelector('#message-template')
 const messages = document.querySelector('ul')
 const container = document.querySelector('main')
@@ -81,7 +81,7 @@ function addMessage(text, sender) {
   const textMessage = newMessage.querySelector('p')
 
   textMessage.textContent = text
-  who.textContent = sender === 'bot' ? 'GPT' : 'Tú'
+  who.textContent = sender === 'bot' ? 'IA' : 'Tú'
   newMessage.classList.add(sender)
 
   messages.appendChild(newMessage)

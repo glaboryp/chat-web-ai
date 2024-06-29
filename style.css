@@ -47,7 +47,7 @@ ul {
 
   p {
     border-radius: 4px;
-    padding: 4px 8px;
+    padding: 8px 16px;
     margin: 8px 0;
   }
 
@@ -55,38 +55,53 @@ ul {
     align-self: flex-end;
     align-items: flex-end;
     p, span {
-      background: rgb(219, 236, 255);
+      background: rgb(228 229 241);
     }
   }
 
   &.bot {
     align-self: flex-start;
     p, span {
-      background: rgb(201, 234, 214);
+      background: rgb(0 0 0 / 7%);
     }
   }
 }
 
 form {
   display: flex;
+  align-items: flex-end;
 
-  input {
+  textarea {
     flex-grow: 1;
     padding: 8px;
     margin-right: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    max-height: 40px;
+    min-height: 40px;
+    resize: none;
+  }
+
+  textarea::placeholder {
+    opacity: .6;
+  }
+
+  textarea:focus-visible {
+    outline-color: rgb(88 94 132);
   }
 
   button {
-    padding: 8px 16px;
-    border: 1px solid #e1e1e1;
     border-radius: 5px;
-    background-color: #09f;
+    background-color: rgb(90 96 135);
     color: #fff;
-    cursor: pointer;
-    padding: 8px;
     transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    gap: 10px;
+    cursor: pointer;
+    border: none;
 
     &[disabled] {
       background: #ccc;
@@ -94,9 +109,14 @@ form {
       pointer-events: none;
     }
     &:hover {
-      background-color: #0077cc;
+      background-color: rgb(58 62 97);
     }
   }
+}
+
+.button-icon {
+  width: 16px;
+  height: 16px;
 }
 
 small {
