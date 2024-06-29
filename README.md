@@ -19,7 +19,13 @@ Todo se ejecuta dentro del navegador sin necesidad de un servidor y se acelera c
     git clone git@github.com:tu_username/chat-web-ai.git
     ```
 
-3. Para poder visualizar los cambios te recomiento instalar alguna extensión para ello. Si utilizas Visual Studio Code puedes instalar [**Live Preview**](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server).
+3. Instala las dependencias y levanta el servidor en local:
+
+    ```bash
+    cd chat-web-ai
+    npm install
+    npm start
+    ```
 
 4. Realiza los cambios y crea una pull request 🚀.
 
