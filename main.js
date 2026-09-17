@@ -181,11 +181,10 @@ async function init() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
     const messageText = input.value.trim()
+    if (messageText === '') return
 
-    if (messageText !== '') {
-      input.value = ''
-      resizeInput()
-    }
+    input.value = ''
+    resizeInput()
 
     addMessage(messageText, 'user')
     button.setAttribute('disabled', true)
