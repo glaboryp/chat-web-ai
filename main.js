@@ -123,7 +123,17 @@ async function isWebGPUAvailable() {
   }
 }
 
+function isNearBottom() {
+  return container.scrollHeight - container.scrollTop - container.clientHeight < 80
+}
+
+function scrollToBottom() {
+  container.scrollTop = container.scrollHeight
+}
+
 function addMessage(text, sender) {
+  const shouldStick = isNearBottom()
+
   // Clonamos el template de manera profunda (por eso añadimos el true)
   const clonedTemplate = template.content.cloneNode(true)
   const newMessage = clonedTemplate.querySelector('.message')
@@ -137,7 +147,7 @@ function addMessage(text, sender) {
 
   messages.appendChild(newMessage)
 
-  container.scrollTop = container.scrollHeight
+  if (shouldStick) scrollToBottom()
 
   return textMessage
 }
@@ -196,10 +206,12 @@ async function init() {
     const botMessage = addMessage('', 'bot')
 
     for await (const chunk of chunks) {
+      const shouldStick = isNearBottom()
       const choice = chunk.choices[0]
       const content = choice?.delta?.content ?? ''
       reply += content
       botMessage.textContent = reply
+      if (shouldStick) scrollToBottom()
     }
 
     messagesList.push({
@@ -207,7 +219,6 @@ async function init() {
       content: reply
     })
     button.removeAttribute('disabled')
-    container.scrollTop = container.scrollHeight
   })
 }
 
