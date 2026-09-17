@@ -155,7 +155,6 @@ body {
 #screen-chat main {
   flex: 1;
   overflow-y: auto;
-  scroll-behavior: smooth;
   padding: 20px;
 }
 
