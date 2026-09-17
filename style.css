@@ -168,6 +168,15 @@ small {
   max-width: 400px;
 }
 
+.webgpu-warning {
+  text-align: center;
+}
+
+.webgpu-warning-message {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .hidden {
   display: none;
 }
