@@ -35,6 +35,16 @@ function showWebgpuWarning() {
   webgpuWarningMessage.textContent = WEBGPU_INSTRUCTIONS[detectBrowser()]
 }
 
+async function isWebGPUAvailable() {
+  if (!navigator.gpu) return false
+  try {
+    const adapter = await navigator.gpu.requestAdapter()
+    return adapter !== null
+  } catch {
+    return false
+  }
+}
+
 function addMessage(text, sender) {
   // Clonamos el template de manera profunda (por eso añadimos el true)
   const clonedTemplate = template.content.cloneNode(true)
@@ -55,7 +65,7 @@ function addMessage(text, sender) {
 }
 
 async function init() {
-  if (!navigator.gpu) {
+  if (!(await isWebGPUAvailable())) {
     showWebgpuWarning()
     return
   }
