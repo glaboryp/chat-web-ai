@@ -228,6 +228,8 @@ body {
   textarea {
     flex-grow: 1;
     min-width: 0;
+    box-sizing: border-box;
+    height: 40px;
     min-height: 40px;
     max-height: 96px;
     padding: 10px 12px;
@@ -238,6 +240,7 @@ body {
     color: var(--text-body);
     background: var(--input-bg);
     resize: none;
+    overflow-y: auto;
   }
 
   textarea::placeholder {

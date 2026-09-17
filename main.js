@@ -20,6 +20,8 @@ const progressPercentage = document.querySelector('#progress-percentage')
 const webgpuSubtitle = document.querySelector('#webgpu-subtitle')
 const webgpuSteps = document.querySelector('#webgpu-steps')
 
+input.addEventListener('input', resizeInput)
+
 const PROGRESS_RING_CIRCUMFERENCE = 2 * Math.PI * 52
 
 const WEBGPU_INSTRUCTIONS = {
@@ -87,6 +89,11 @@ function setStatus(variant, text) {
 function setProgress(ratio) {
   progressBar.style.strokeDashoffset = PROGRESS_RING_CIRCUMFERENCE * (1 - ratio)
   progressPercentage.textContent = `${Math.round(ratio * 100)}%`
+}
+
+function resizeInput() {
+  input.style.height = 'auto'
+  input.style.height = `${input.scrollHeight}px`
 }
 
 function showWebgpuWarning() {
@@ -167,6 +174,7 @@ async function init() {
 
     if (messageText !== '') {
       input.value = ''
+      resizeInput()
     }
 
     addMessage(messageText, 'user')
