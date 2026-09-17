@@ -23,8 +23,8 @@ Todo se ejecuta dentro del navegador sin necesidad de un servidor y se acelera c
 
     ```bash
     cd chat-web-ai
-    npm install
-    npm start
+    pnpm install
+    pnpm dev
     ```
 
 4. Realiza los cambios y crea una pull request 🚀.
