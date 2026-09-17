@@ -76,7 +76,7 @@ async function init() {
   const SELECTED_MODEL = 'TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC'
 
   const engine = await CreateWebWorkerMLCEngine(
-    new Worker('/worker.js', { type: 'module' }),
+    new Worker(new URL('./worker.js', import.meta.url), { type: 'module' }),
     SELECTED_MODEL,
     {
       initProgressCallback: (info) => {
