@@ -5,49 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat con IA en local</title>
   <link rel="icon" type="image/webp" href="/logo.webp"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,400;1,600&family=Work+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/style.css">
   <script type="module" src="/main.js" ></script>
 </head>
 <body>
-  <div id="container" class="backOpacity">
-    <main>
-      <ul>
-        <li class="message bot">
-          <span>IA</span>
-          <p>¡Hola! ¿En qué puedo ayudarte hoy?</p>
+  <div id="app-card">
+    <header class="app-header">
+      <div class="app-header-title">
+        <span class="app-name">Chat Web AI</span>
+        <span class="app-subtitle">TinyLlama · en tu navegador</span>
+      </div>
+      <div id="status-pill" class="status-pill">
+        <span id="status-dot" class="status-dot status-dot--loading"></span>
+        <span id="status-text">Cargando…</span>
+      </div>
+    </header>
+
+    <div id="screen-chat" class="screen hidden">
+      <main>
+        <ul>
+          <li class="message bot">
+            <span>IA</span>
+            <p>¡Hola! ¿En qué puedo ayudarte hoy?</p>
+          </li>
+        </ul>
+      </main>
+
+      <form>
+        <label class="sr-only" for="prompt">Escribe tu mensaje</label>
+        <textarea id="prompt" name="prompt" rows="1" placeholder="¿Cómo puedo ayudarte hoy?"></textarea>
+        <button disabled>
+          <div class="button-icon">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8h10.5M8 3.5 13 8l-5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="button-text">Enviar</div>
+        </button>
+      </form>
+
+      <template id="message-template">
+        <li class="message">
+          <span></span>
+          <p></p>
         </li>
-      </ul>
-    </main>
+      </template>
+    </div>
 
-    <form>
-      <textarea id="prompt" name="prompt" rows="2" placeholder="Escribe algo y presiona el botón de enviar, presiona Enter para nueva línea"></textarea>
-      <button disabled>
-        <div class="button-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" fill="none"><defs><path id="send-white_svg__a" d="M0 0h16v16H0z"></path></defs><g><mask id="send-white_svg__b" fill="#fff"><use xlink:href="#send-white_svg__a"></use></mask><g mask="url(#send-white_svg__b)"><path d="M0 4.71 6.67 6l1.67 6.67L12.67 0 0 4.71Z" transform="translate(1.333 2)" style="stroke: rgb(255, 255, 255); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0;"></path><path d="M0 1.89 1.89 0" transform="translate(8.003 6.117)" style="stroke: rgb(255, 255, 255); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0;"></path></g></g></svg>
-        </div>
-        <div class="button-text">Enviar</div>
-      </button>
-    </form>
+    <div id="screen-loading" class="screen">
+      <div class="progress-ring">
+        <svg class="progress-ring-svg" viewBox="0 0 120 120">
+          <circle class="progress-ring-track" cx="60" cy="60" r="52"></circle>
+          <circle id="progress-bar" class="progress-ring-bar" cx="60" cy="60" r="52"></circle>
+        </svg>
+        <span id="progress-percentage" class="progress-percentage">0%</span>
+      </div>
+      <div class="loading-text">
+        <span class="loading-title">Cargando el modelo de lenguaje…</span>
+        <span class="loading-detail">Es la primera vez que visitas esta página: puede tardar unos minutos. Las próximas cargas serán mucho más rápidas.</span>
+      </div>
+    </div>
 
-    <template id="message-template">
-      <li class="message">
-        <span></span>
-        <p></p>
-      </li>
-    </template>
-  </div>
-
-  <small>&nbsp;</small>
-
-  <div class="loading-container">
-    <span class="loader"></span>
-    <h3 class="loadig-message">Espere por favor...</h3>
-    <h3>Se está cargando el modelo de lenguaje natural en local, esto puede tardar unos minutos.</h3>
-  </div>
-
-  <div class="loading-container webgpu-warning hidden">
-    <h3>Tu navegador no soporta WebGPU</h3>
-    <p class="webgpu-warning-message"></p>
+    <div id="screen-webgpu" class="screen hidden">
+      <span class="webgpu-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.5"></rect>
+          <path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </span>
+      <div class="webgpu-text">
+        <span class="webgpu-title">Tu navegador no soporta WebGPU</span>
+        <span id="webgpu-subtitle" class="webgpu-subtitle"></span>
+      </div>
+      <ol id="webgpu-steps" class="webgpu-steps"></ol>
+      <span class="webgpu-footer">¿Sigue sin funcionar? Comprueba tu compatibilidad en <a href="https://webgpureport.org/" target="_blank" rel="noopener">webgpureport.org</a></span>
+    </div>
   </div>
 </body>
 </html>
